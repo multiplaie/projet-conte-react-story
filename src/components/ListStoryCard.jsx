@@ -11,17 +11,18 @@ export class ListStoryCard extends Component{
         this.state = {
             stories: []
         };
+
     }
 
     componentDidMount() {
         axios.get("http://"+config.api.host+":"+config.api.port+"/api/story")
         .then(res => this.setState({stories: res.data}));
     }
-    
+
     render(){
         return <div className="d-flex flex-wrap justify-content-center">
-             {this.state.stories.map((story)=>{
-                 return <StoryCard title={story.title} id={story._id} key={story._id}/>
+             {this.state.stories.map((story, k)=>{
+                 return <StoryCard story={story} key={k} />
              })}
              <div className="card story-card text-white bg-primary">
                 <div className="card-body">
