@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.story-card{
+  width: 25%!important;
+  margin: 1em;
+}
+
+#story-page .chapter-list{
+  width: 20%;
+}
