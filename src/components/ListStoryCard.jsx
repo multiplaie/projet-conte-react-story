@@ -4,6 +4,7 @@ import config from "../config.json";
 import {StoryCard} from "../components/StoryCard";
 import { Link } from "react-router-dom";
 
+
 export class ListStoryCard extends Component{
 
     constructor(props){
@@ -11,7 +12,6 @@ export class ListStoryCard extends Component{
         this.state = {
             stories: []
         };
-
     }
 
     componentDidMount() {

@@ -32,7 +32,7 @@ export class StoryCard extends Component{
           <div className="card-body">
             <h5 className="card-title">{this.state.story.title}</h5>
             <div >
-              <Link className="btn btn-primary" to={`/story/edit/${this.state.story._id}`}>EDIT</Link>
+              <Link className="btn btn-primary" to={`/story/${this.state.story._id}`}>EDIT</Link>
               <button className="btn btn-danger" onClick={this.handleDelete}>ARCHIVE</button>
             </div>
           </div>

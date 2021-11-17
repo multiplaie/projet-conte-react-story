@@ -7,12 +7,24 @@ export class Story {
         this.url = "http://"+config.api.host+":"+config.api.port+"/api/story"
     }
 
-     setData(props){
+    setData(props){
         this.data = props;
     }
 
     isNew(){
         return this.data.hasOwnProperty('_id');
+    }
+
+    async getOneById(id){
+        let story = {};
+        await axios.get(this.url+"/OneById/"+id)
+        .then((res) => {
+            story = res.data
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        return await story;
     }
 
     async save(){

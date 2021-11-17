@@ -1,9 +1,13 @@
 import './App.css';
-import {Home} from "./routes/Home.jsx";
-import {AddStory} from "./routes/AddStory.jsx";
+import {Home} from "./routes/Home";
+import {AddStory} from "./routes/AddStory";
+import Chapter from "./routes/Chapter";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
+
 function App() {
+
+    
   return (
     <BrowserRouter>
         <div className="App">
@@ -16,7 +20,10 @@ function App() {
           
       <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/story/add" exact element={<AddStory />} />
+          <Route path="story">
+            <Route path="add" exact element={<AddStory />} />
+            <Route path=":story_id" element={<Chapter />} />
+          </Route>
       </Routes>
     </BrowserRouter>
   );
