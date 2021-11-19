@@ -1,3 +1,10 @@
+/**
+ * TODO:
+ * - Add page to list archived stories
+ * - log user to identify ?
+ * - 
+ */
+
 import './App.css';
 import {Home} from "./routes/Home";
 import {AddStory} from "./routes/AddStory";
