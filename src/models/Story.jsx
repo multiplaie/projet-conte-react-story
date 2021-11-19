@@ -3,13 +3,13 @@ import config from "../config.json";
 
 export class Story {
 
-    constructor(){
+    constructor(props){
         this.url = "http://"+config.api.host+":"+config.api.port+"/api/story"
+        if(props){
+            this.data = props;
+        }
     }
 
-    setData(props){
-        this.data = props;
-    }
 
     isNew(){
         return this.data.hasOwnProperty('_id');

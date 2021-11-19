@@ -14,21 +14,19 @@ export class StoryCard extends Component{
 
     handleDelete(e){
       e.preventDefault();
-      let story = new Story();
-      story.setData(this.state.story);
+      let story = new Story(this.state.story);
       story.archive()
       .then(res => {
         let newState = this.state;
         newState.story = res;
         this.setState(newState);
-        console.log(this.state)
+        this.props.onRemoveCard(this.state.story)
       });
-
     }
 
     render(){
       return (
-        <div className={(this.state.story.archive)?`card story-card d-none`:`card story-card`} >
+        <div className="card story-card" >
           <div className="card-body">
             <h5 className="card-title">{this.state.story.title}</h5>
             <div >

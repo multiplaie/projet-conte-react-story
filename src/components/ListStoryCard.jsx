@@ -12,6 +12,8 @@ export class ListStoryCard extends Component{
         this.state = {
             stories: []
         };
+
+        this.handleRemoveCard = this.handleRemoveCard.bind(this)
     }
 
     componentDidMount() {
@@ -19,10 +21,17 @@ export class ListStoryCard extends Component{
         .then(res => this.setState({stories: res.data}));
     }
 
+    handleRemoveCard(storyToRemove){
+        let newState = this.state
+        newState.stories = this.state.stories.filter(story => story._id !== storyToRemove._id)
+        this.setState(newState)
+    }
+
     render(){
-        return <div className="d-flex flex-wrap justify-content-center">
+        return (
+        <div className="d-flex flex-wrap justify-content-center">
              {this.state.stories.map((story, k)=>{
-                 return <StoryCard story={story} key={k} />
+                 return <StoryCard story={story} key={k} onRemoveCard={this.handleRemoveCard} />
              })}
              <div className="card story-card text-white bg-primary">
                 <div className="card-body">
@@ -31,7 +40,7 @@ export class ListStoryCard extends Component{
                 </div>
             </div>
       </div>
-        
+        )
     }
 
 }
