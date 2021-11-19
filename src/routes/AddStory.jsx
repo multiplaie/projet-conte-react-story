@@ -26,8 +26,7 @@ export class AddStory extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let newStory = new Story();
-    newStory.setData(this.state.data)
+    let newStory = new Story(this.state.data);
     newStory.save()
     .then((res)=>{
       let newState = this.state;
