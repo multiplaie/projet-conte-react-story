@@ -69,30 +69,28 @@ export class ChapterForm extends Component{
 
 
         return (
-            <main className="bg-light p-5 rounded">
-                <div className="container">
-                    <form onSubmit={this.handleSubmit}>
-                    <div className="mb-3"> 
-                        <label htmlFor="chapter-title" className="form-label">Titre :</label>
-                        <input type="text" className="form-control" id="chapter-title" onChange={this.handleChangeTitle} value={this.state.title}></input>
-                    </div>
-                    <div className="mb-3"> 
-                        <label htmlFor="chapter-content" className="form-label">Contenu :</label>
-                        <textarea className="form-control" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
-                    </div>
-                    <div className="mb-3"> 
-                        <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
-                        <textarea className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
-                    </div>
-                    <div className="mb-3 form-ckeck"> 
-                        <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
-                        <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire ? :</label>
-                    </div>
-
-                    <input type="submit" value={(this.state._id) ? "Valider": "Créer"} className="btn btn-primary"/>
-                    </form>
+            
+            <form onSubmit={this.handleSubmit}>
+                <div className="mb-3"> 
+                    <label htmlFor="chapter-title" className="form-label">Titre :</label>
+                    <input type="text" className="form-control" id="chapter-title" onChange={this.handleChangeTitle} value={this.state.title}></input>
                 </div>
-            </main>
+                <div className="mb-3"> 
+                    <label htmlFor="chapter-content" className="form-label">Contenu :</label>
+                    <textarea className="form-control" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
+                </div>
+                <div className="mb-3"> 
+                    <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
+                    <textarea className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
+                </div>
+                <div className="mb-3 form-ckeck"> 
+                    <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
+                    <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire ? :</label>
+                </div>
+
+                <input type="submit" value={(this.state._id) ? "Valider": "Créer"} className="btn btn-primary"/>
+            </form>
+
         )
     }
 }

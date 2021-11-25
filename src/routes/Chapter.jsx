@@ -5,7 +5,7 @@
  */
 
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ListChapterOfStory } from "../components/ListChapterOfStory";
 import { ChapterForm } from "../components/ChapterForm";
 import { useState, useEffect } from "react";
@@ -23,7 +23,7 @@ export default function Chapter(){
         assets: [],
         story: params.story_id,
         archive: null,
-        start: true,
+        start: false,
         _id: undefined
     }
     
@@ -72,8 +72,12 @@ export default function Chapter(){
                     <div className="col-md-2">
                         <ListChapterOfStory currentStory={currentStory} chapters={chapters} currentChapter={currentChapter} onClickAddNewChapter={handleAddNewChapter} onChangeSelectedChapter={selectChapter} />
                     </div>
-                    <div className="col-md-10">
-                        <ChapterForm  currentChapter={currentChapter} onSubmit={handleSubmit}/>
+                    <div className="col-md-10 bg-light p-5 rounded">
+                        <div className="container">
+                        <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
+                            <hr />
+                            <ChapterForm  currentChapter={currentChapter} onSubmit={handleSubmit}/>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -85,7 +89,10 @@ export default function Chapter(){
                         
                     </div>
                     <div className="col-md-10">
-                        
+                    <div className="container">
+                    <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
+                            <hr />
+                        </div>
                     </div>
                 </div>
             </main>
