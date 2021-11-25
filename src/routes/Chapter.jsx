@@ -1,10 +1,7 @@
 /**
  * TODO: 
- * - update list chapteur after save chapterform
  * - place a markdown edito for content and annotations fields
- * - load chapter seleted from menu
  * - place return button to go home
- * - place add chapter button on the to of the chapter menu
  */
 
 
@@ -17,50 +14,66 @@ import {Story as StoryModel} from "../models/Story";
 
 export default function Chapter(){
     let params = useParams();
-    let [pageData, setPageData] = useState(0);
+    
+    const initChapter = {
+        title: "",
+        content: "",
+        annotations: "",
+        children: [],
+        assets: [],
+        story: params.story_id,
+        archive: null,
+        start: true,
+        _id: undefined
+    }
+    
+    const [pageData, setPageData] = useState({loaded: false});
+    const [currentChapter, setCurrentChapter] = useState({})
+    const [currentStory, setCurrentStory] = useState({})
+    const [chapters, setChapters] = useState([])
+
 
     useEffect(()=>{
-
-        console.log(pageData.chapters);
         async function initPageData(){
             let chapter = new ChapterModel();
             let story = new StoryModel();
-
-            let data = {
-                story: {},
-                chapters: [],
-                current_chapter: {}
-            };
-
-            data.story = await story.getOneById(params.story_id);
-            data.chapters = await chapter.getAllChapterByStoryId(params.story_id)
-            data.current_chapter = await chapter.getFirstChapterOfStoryByStoryId(params.story_id);
-            setPageData(data);
+            setCurrentStory( await story.getOneById(params.story_id))
+            setChapters(await chapter.getAllChapterByStoryId(params.story_id))
+            setCurrentChapter(initChapter)            
+            setPageData({loaded: true});
         }
         
-        if(!pageData){
+        if(!pageData.loaded){
             initPageData();
         }
-
-
     });
 
-    async function handleUpdateCurrentChapterData(){
-        let newPageData = pageData;
-        let chapter = new ChapterModel();
-        newPageData.chapters = await chapter.getAllChapterByStoryId(pageData.story._id);
-        setPageData(newPageData)
+    function handleAddNewChapter(){
+        setCurrentChapter(initChapter)
     }
 
-    if(pageData){
+    async function handleSubmit(newCurrentChapter){
+        let chapter = new ChapterModel();
+        await chapter.getAllChapterByStoryId(currentStory._id)
+        .then(res => {
+            setChapters(res)
+            setCurrentChapter(newCurrentChapter)
+        })
+    }
+
+    function selectChapter(chapterSelected){
+        setCurrentChapter(chapterSelected)
+    }
+
+    if(pageData.loaded){
         return(
             <main id="story-page">
                 <div className="row">
                     <div className="col-md-2">
-                        <ListChapterOfStory pageData={pageData} />
+                        <ListChapterOfStory currentStory={currentStory} chapters={chapters} currentChapter={currentChapter} onClickAddNewChapter={handleAddNewChapter} onChangeSelectedChapter={selectChapter} />
                     </div>
                     <div className="col-md-10">
-                        <ChapterForm  current_chapter={pageData.current_chapter} onChangeCurrentChapterData={handleUpdateCurrentChapterData}/>
+                        <ChapterForm  currentChapter={currentChapter} onSubmit={handleSubmit}/>
                     </div>
                 </div>
             </main>

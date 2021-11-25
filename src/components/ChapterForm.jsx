@@ -1,3 +1,12 @@
+/**
+ * TODO: 
+ * - Validation form
+ * - show errors from api
+ * - allow just one first chapter in a story
+ */
+
+
+
 import { Component } from "react";
 import {Chapter} from "../models/Chapter";
 
@@ -5,42 +14,40 @@ export class ChapterForm extends Component{
 
     constructor(props){
         super(props)
-        this.state={
-            title: "",
-            content: "",
-            annotations: ""
-        }
+        this.state=props.currentChapter
         
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChangeContent = this.handleChangeContent.bind(this);
         this.handleChangeAnnotations = this.handleChangeAnnotations.bind(this);
+        this.handleChangeStart = this.handleChangeStart.bind(this)
     }
-
-    componentDidUpdate(){
-        console.log('ok')
+    
+    componentDidUpdate(prevProps, PrevState){
+        if(prevProps.currentChapter._id !== this.props.currentChapter._id){
+            this.setState(this.props.currentChapter)
+        }
     }
-
 
     componentDidMount(){
-        this.setState(this.props.current_chapter)
+        if(this.props.currentChapter)
+            this.setState(this.props.currentChapter)
     }
 
     handleSubmit(e){
         e.preventDefault();
         let chapter = new Chapter(this.state);
         chapter.save()
-        .then(()=>{
-            this.props.onChangeCurrentChapterData();
-        });
-        
+        .then((res)=>{
+            this.props.onSubmit(res);
+            this.setState(res)
+        })        
     }
 
     handleChangeTitle(e){
         let newState = this.state;
         newState.title =  e.target.value;
         this.setState(newState);
-
     }
     handleChangeContent(e){
         let newState = this.state;
@@ -50,6 +57,11 @@ export class ChapterForm extends Component{
     handleChangeAnnotations(e){
         let newState = this.state;
         newState.annotations =  e.target.value;
+        this.setState(newState);
+    }
+    handleChangeStart(e){
+        let newState = this.state;
+        newState.start =  e.target.checked;
         this.setState(newState);
     }
 
@@ -72,7 +84,12 @@ export class ChapterForm extends Component{
                         <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
                         <textarea className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
                     </div>
-                    <input type="submit" value="Valider" className="btn btn-primary"/>
+                    <div className="mb-3 form-ckeck"> 
+                        <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
+                        <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire ? :</label>
+                    </div>
+
+                    <input type="submit" value={(this.state._id) ? "Valider": "Créer"} className="btn btn-primary"/>
                     </form>
                 </div>
             </main>

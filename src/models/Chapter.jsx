@@ -11,16 +11,12 @@ export class Chapter{
             children: [],
             assets: [],
             story: null,
-            archive: null
+            archive: null,
+            start: false,
+            _id: undefined
         }
         if(props){
-            this.data.title = props.title
-            this.data.content = props.content
-            this.data.annotations = props.annotations
-            this.data.story = props.story
-            if(props._id)
-                this.data._id = props._id
-           //TODO: complete
+            this.data = props
         }
 
         
