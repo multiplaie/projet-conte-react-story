@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * - show popup to confirm archivate story
+ * 
+ */
+
 import { Component, React } from "react";
 import { ListStoryCard } from "../components/ListStoryCard"
 
