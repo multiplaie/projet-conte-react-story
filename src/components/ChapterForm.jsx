@@ -11,6 +11,7 @@
 import { Component } from "react";
 import {Chapter} from "../models/Chapter";
 import { ChapterSelectBox } from "./ChapterSelectBox";
+import  MDEditor  from "@uiw/react-md-editor";
 
 export class ChapterForm extends Component{
 
@@ -53,14 +54,10 @@ export class ChapterForm extends Component{
         this.setState(newState);
     }
     handleChangeContent(e){
-        let newState = this.state;
-        newState.content =  e.target.value;
-        this.setState(newState);
+        this.setState({content: e})
     }
     handleChangeAnnotations(e){
-        let newState = this.state;
-        newState.annotations =  e.target.value;
-        this.setState(newState);
+        this.setState({content: e})
     }
     handleChangeStart(e){
         let newState = this.state;
@@ -83,11 +80,11 @@ export class ChapterForm extends Component{
                 </div>
                 <div className="mb-3"> 
                     <label htmlFor="chapter-content" className="form-label">Contenu :</label>
-                    <textarea className="form-control" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
+                    <MDEditor className="form-control" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
                 </div>
                 <div className="mb-3"> 
                     <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
-                    <textarea className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
+                    <MDEditor className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
                 </div>
                 <div className="mb-3 form-ckeck"> 
                     <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
