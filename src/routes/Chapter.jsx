@@ -19,7 +19,7 @@ export default function Chapter(){
         title: "",
         content: "",
         annotations: "",
-        children: [],
+        parent: "",
         assets: [],
         story: params.story_id,
         archive: null,
@@ -76,7 +76,7 @@ export default function Chapter(){
                         <div className="container">
                         <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
                             <hr />
-                            <ChapterForm  currentChapter={currentChapter} onSubmit={handleSubmit}/>
+                            <ChapterForm  currentChapter={currentChapter} chapters={chapters} onSubmit={handleSubmit}/>
                         </div>
                     </div>
                 </div>

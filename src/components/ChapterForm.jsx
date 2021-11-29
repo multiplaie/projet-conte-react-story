@@ -3,12 +3,14 @@
  * - Validation form
  * - show errors from api
  * - allow just one first chapter in a story
+ * - refactorization handle
  */
 
 
 
 import { Component } from "react";
 import {Chapter} from "../models/Chapter";
+import { ChapterSelectBox } from "./ChapterSelectBox";
 
 export class ChapterForm extends Component{
 
@@ -21,6 +23,7 @@ export class ChapterForm extends Component{
         this.handleChangeContent = this.handleChangeContent.bind(this);
         this.handleChangeAnnotations = this.handleChangeAnnotations.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this)
+        this.handleChangeParent = this.handleChangeParent.bind(this)
     }
     
     componentDidUpdate(prevProps, PrevState){
@@ -64,6 +67,9 @@ export class ChapterForm extends Component{
         newState.start =  e.target.checked;
         this.setState(newState);
     }
+    handleChangeParent(value){
+        this.setState({parent: value})
+    }
 
     render(){
 
@@ -87,7 +93,10 @@ export class ChapterForm extends Component{
                     <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
                     <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire ? :</label>
                 </div>
-
+                <div className={(this.state.start)?'mb-3 d-none':'mb-3'}> 
+                    <label htmlFor="chapter-parent" className="form-label">Parent :</label>
+                    <ChapterSelectBox chapters={this.props.chapters} currentChapter={this.state} onSelectChapterParent={this.handleChangeParent} />
+                </div>
                 <input type="submit" value={(this.state._id) ? "Valider": "Créer"} className="btn btn-primary"/>
             </form>
 

@@ -8,7 +8,7 @@ export class Chapter{
             title: null,
             content: null,
             annotations: null,
-            children: [],
+            parent: "",
             assets: [],
             story: null,
             archive: null,
