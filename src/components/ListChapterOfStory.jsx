@@ -1,5 +1,7 @@
 import { Component, React } from "react";
 import { ChapterMenuItem } from "./ChapterMenuItem";
+import { Link } from "react-router-dom";
+
 export class ListChapterOfStory extends Component{
 
     constructor(props){
@@ -15,7 +17,9 @@ export class ListChapterOfStory extends Component{
     render(){
       return (
         <div className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white chapter-list">
-          <span className="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><strong>{this.props.currentStory.title}</strong></span>
+          <span className="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+            <strong>{this.props.currentStory.title}</strong> &nbsp; <Link to={"/story/edit/"+this.props.currentStory._id} className="btn btn-primary"> Edit</Link>
+            </span>
           <div className="list-group list-group-flush border-bottom scrollarea">
           <div className="list-group-item list-group-item-action py-3 lh-tight">
               <div className="d-flex w-100 align-items-center justify-content-between">

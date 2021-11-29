@@ -8,6 +8,7 @@
 import './App.css';
 import {Home} from "./routes/Home";
 import {AddStory} from "./routes/AddStory";
+import Story from "./routes/Story";
 import Chapter from "./routes/Chapter";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -28,7 +29,8 @@ function App() {
       <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="story">
-            <Route path="add" exact element={<AddStory />} />
+            <Route path="add" exact element={<Story />} />
+            <Route path="edit/:story_id" exact element={<Story />} />
             <Route path=":story_id" element={<Chapter />} />
           </Route>
       </Routes>
