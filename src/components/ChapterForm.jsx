@@ -4,6 +4,8 @@
  * - show errors from api
  * - allow just one first chapter in a story
  * - refactorization handle
+ * - add media field
+ * - add script field
  */
 
 
@@ -92,8 +94,8 @@ export class ChapterForm extends Component{
                 <div className="">
                     <div className="row">
                         <div className="mb-3 col-md-9"> 
-                            <label htmlFor="chapter-content" className="form-label">Contenu :</label>
-                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
+                            <label htmlFor="chapter-content" className="form-label">Synopsys :</label>
+                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} height="500" />
                         </div>
                         <div className="mb-3 col-md-3">
                             <div className={(this.state.start)?'mb-3 d-none':'mb-3'}> 
@@ -105,7 +107,7 @@ export class ChapterForm extends Component{
                     <div className="row">
                         <div className="mb-3 col-md-9"> 
                             <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
-                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
+                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations} height="500"/>
                         </div>
                     </div>
                 </div>
