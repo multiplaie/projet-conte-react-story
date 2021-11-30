@@ -59,34 +59,46 @@ function Story() {
 
     if(pageData.loaded)
         return (
-            <main id="story-page" className="container">
-                <div className="bg-light p-5 rounded">
+            <main id="story-page" className="">
+                <div className="bg-beige p-5 rounded">
                     <Link to='/'>Revenir à la liste des histoires</Link>
-                <h1>Histoire</h1>
+                
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3"> 
-                        <label htmlFor="story-title" className="form-label">Titre :</label>
-                        <input type="text" className="form-control" id="story-title" value={currentStory.title} onChange={handleChangeTitle}></input>
+                        <input type="text" className="form-control nude-field big-font" id="story-title" value={currentStory.title} onChange={handleChangeTitle}></input>
                     </div>
-                    <div className="mb-3"> 
-                        <label className="form-label">Element narrative :</label>
-                        <MDEditor className="form-control" id="story-narrative-element" value={currentStory.narrative_element} onChange={handleChangeNarrativeElement} />
+
+                    <div className="row">
+                        <div className="col-md-9">
+                            <div className="mb-3"> 
+                                <label className="form-label">Element narrative :</label>
+                                <MDEditor height="500" className="" id="story-narrative-element" value={currentStory.narrative_element} onChange={handleChangeNarrativeElement} />
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div className="mb-3"> 
+                                <label className="form-label">Lieux et ambiance :</label>
+                                <MDEditor height="500" className="" id="story-place" value={currentStory.place} onChange={handleChangePlace} />
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-3"> 
-                        <label className="form-label">Personnages :</label>
-                        <MDEditor className="form-control" id="story-characters" value={currentStory.characters} onChange={handleChangeCharacters} />
-                    </div>
-                    <div className="mb-3"> 
-                        <label className="form-label">Lieux et ambiance :</label>
-                        <MDEditor className="form-control" id="story-place" value={currentStory.place} onChange={handleChangePlace} />
-                    </div>
-                    <div className="mb-3"> 
-                        <label className="form-label">Résumé :</label>
-                        <MDEditor className="form-control" id="story-pitch" value={currentStory.pitch} onChange={handleChangePitch} />
+                    <div className="row">
+                        <div className="col-md-9">
+                            <div className="mb-3"> 
+                                <label className="form-label">Personnages :</label>
+                                <MDEditor height="500" className="" id="story-characters" value={currentStory.characters} onChange={handleChangeCharacters} />
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div className="mb-3"> 
+                                <label className="form-label">Résumé :</label>
+                                <MDEditor height="500" className="" id="story-pitch" value={currentStory.pitch} onChange={handleChangePitch} />
+                            </div>
+                        </div>
                     </div>
                     <div className="mb-3"> 
                         <label className="form-label">Déroulement Narratif :</label>
-                        <MDEditor className="form-control" id="story-development" value={currentStory.development} onChange={handleChangeDevelopment} />
+                        <MDEditor height="500" className="" id="story-development" value={currentStory.development} onChange={handleChangeDevelopment} />
                     </div>
                     <input type="submit" value={(currentStory._id)?"Valider":"Créer"} className="btn btn-primary"/>&nbsp;
                     {(currentStory._id) ? <Link to={"/story/"+currentStory._id}> Voir aux chapitres </Link> : ""}
