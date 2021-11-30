@@ -1,3 +1,10 @@
+/**
+ * 
+ * TODO:
+ * - identify first chapter of the list
+ * - indicate the parent of a chapter
+ */
+
 import { Component, React } from "react";
 import { ChapterMenuItem } from "./ChapterMenuItem";
 import { Link } from "react-router-dom";

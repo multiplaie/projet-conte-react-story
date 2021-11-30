@@ -18,7 +18,7 @@ export class ChapterMenuItem extends Component{
                 <strong>{this.props.chapter.title}</strong>
               </div>
               <div className="col-10 mb-1 small">
-                {this.props.chapter.content}
+                {this.props.chapter.content.substring(0,120)}...
               </div>
             </div>
         )

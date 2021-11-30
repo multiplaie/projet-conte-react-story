@@ -72,7 +72,7 @@ export default function Chapter(){
                     <div className="col-md-2 bg-white">
                         <ListChapterOfStory currentStory={currentStory} chapters={chapters} currentChapter={currentChapter} onClickAddNewChapter={handleAddNewChapter} onChangeSelectedChapter={selectChapter} />
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-10 p-3">
                         <div className="rounded mb-3 p-2 bg-white">
                             <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
                         </div>
