@@ -57,7 +57,7 @@ export class ChapterForm extends Component{
         this.setState({content: e})
     }
     handleChangeAnnotations(e){
-        this.setState({content: e})
+        this.setState({annotations: e})
     }
     handleChangeStart(e){
         let newState = this.state;
@@ -74,26 +74,44 @@ export class ChapterForm extends Component{
         return (
             
             <form onSubmit={this.handleSubmit}>
-                <div className="mb-3"> 
-                    <label htmlFor="chapter-title" className="form-label">Titre :</label>
-                    <input type="text" className="form-control" id="chapter-title" onChange={this.handleChangeTitle} value={this.state.title}></input>
+                <div className="row">
+                    <div className="col-md-9">
+                        <div className="mb-3"> 
+                            <input placeholder="TITRE" type="text" className="form-control nude-field big-font" id="chapter-title" onChange={this.handleChangeTitle} value={this.state.title}></input>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="mb-3 form-ckeck"> 
+                            <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
+                            <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire</label>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div className="mb-3"> 
-                    <label htmlFor="chapter-content" className="form-label">Contenu :</label>
-                    <MDEditor className="form-control" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
+                
+                <div className="">
+                    <div className="row">
+                        <div className="mb-3 col-md-9"> 
+                            <label htmlFor="chapter-content" className="form-label">Contenu :</label>
+                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeContent} value={this.state.content} />
+                        </div>
+                        <div className="mb-3 col-md-3">
+                            <div className={(this.state.start)?'mb-3 d-none':'mb-3'}> 
+                                <label htmlFor="chapter-parent" className="form-label">Parent :</label>
+                                <ChapterSelectBox chapters={this.props.chapters} currentChapter={this.state} onSelectChapterParent={this.handleChangeParent} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="mb-3 col-md-9"> 
+                            <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
+                            <MDEditor className="editor" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3"> 
-                    <label htmlFor="chapter-annotations" className="form-label">Note pour l'équipe :</label>
-                    <MDEditor className="form-control" id="chapter-content" onChange={this.handleChangeAnnotations} value={this.state.annotations}/>
-                </div>
-                <div className="mb-3 form-ckeck"> 
-                    <input type="checkbox" id="chapter-start" className="form-check-input" checked={(this.state.start)?"checked":""} onChange={this.handleChangeStart} />&nbsp;
-                    <label htmlFor="chapter-start" className="form-check-label" >Ce chapitre est le premier de l'histoire ? :</label>
-                </div>
-                <div className={(this.state.start)?'mb-3 d-none':'mb-3'}> 
-                    <label htmlFor="chapter-parent" className="form-label">Parent :</label>
-                    <ChapterSelectBox chapters={this.props.chapters} currentChapter={this.state} onSelectChapterParent={this.handleChangeParent} />
-                </div>
+                
+                
+                
                 <input type="submit" value={(this.state._id) ? "Valider": "Créer"} className="btn btn-primary"/>
             </form>
 

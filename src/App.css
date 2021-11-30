@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +18,30 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/****/
+
+/** FONT **/
+.big-font{
+  font-size: 2em!important;
+}
+
+/** BACKGROUNDS **/
+.bg-beige{
+  background-color: #f9f3ec!important;
+}
+
+.bg-red{
+  background-color: #ed3833!important;
+}
+
+/** FORM **/
+
+.nude-field{
+  background-color: transparent!important;
+  border-width: 0px!important;
+}
+
+.nude-field:focus{
+  border-color: #00000057!important;
+  box-shadow: 0 0 0 .25rem rgba(0,0,0,.25)!important;
 }

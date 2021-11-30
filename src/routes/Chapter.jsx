@@ -67,15 +67,16 @@ export default function Chapter(){
 
     if(pageData.loaded){
         return(
-            <main id="story-page">
+            <main id="story-page" className="container-fluid bg-beige">
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="col-md-2 bg-white">
                         <ListChapterOfStory currentStory={currentStory} chapters={chapters} currentChapter={currentChapter} onClickAddNewChapter={handleAddNewChapter} onChangeSelectedChapter={selectChapter} />
                     </div>
-                    <div className="col-md-10 bg-light p-5 rounded">
-                        <div className="container">
-                        <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
-                            <hr />
+                    <div className="col-md-10">
+                        <div className="rounded mb-3 p-2 bg-white">
+                            <Link to="/" className="btn btn-primary">Retour à la liste des histoires</Link>
+                        </div>
+                        <div className="">
                             <ChapterForm  currentChapter={currentChapter} chapters={chapters} onSubmit={handleSubmit}/>
                         </div>
                     </div>
