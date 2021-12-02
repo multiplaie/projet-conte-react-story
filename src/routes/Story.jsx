@@ -65,7 +65,7 @@ function Story() {
                 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3"> 
-                        <input type="text" className="form-control nude-field big-font" id="story-title" value={currentStory.title} onChange={handleChangeTitle}></input>
+                        <input placeholder="TITRE" type="text" className="form-control nude-field big-font" id="story-title" value={currentStory.title} onChange={handleChangeTitle}></input>
                     </div>
 
                     <div className="row">
